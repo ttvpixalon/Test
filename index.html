@@ -3,36 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Episode Test</title>
+    <title>Chainsaw Man | Watch Anime</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='90%' font-size='90'>💽</text></svg>">
     <style>
+        /* Global Styles */
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #121212;
+            background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
             color: #fff;
+            margin: 0;
+            overflow-x: hidden;
         }
-        h1 {
-            margin-top: 20px;
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            background: linear-gradient(to right, #121212, #1f1f1f);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #FF4D4D;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .anime-header {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .video-container {
+            margin: 30px auto;
+            max-width: 900px;
+            text-align: center;
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
         video {
-            margin-top: 20px;
-            max-width: 80%;
-            height: auto;
-            border: 2px solid #444;
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+        }
+
+        .episode-controls {
+            margin: 30px auto;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .episode-controls button {
+            background: #FF4D4D;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .episode-controls button:hover {
+            background: #D40060;
+        }
+
+        .episode-controls button.active {
+            background: #6A0DAD;
+        }
+
+        .anime-details {
+            margin: 50px auto;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .anime-details img {
+            width: 250px;
+            border-radius: 8px;
+            margin-right: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Anime Episode Test</h1>
-    <video controls>
-        <!-- If using self-hosted video -->
-        <!-- <source src="videos/episode1.mp4" type="video/mp4"> -->
-        
-        <!-- If using Google Drive Direct Link -->
-        <source src="https://drive.google.com/uc?id=YOUR_VIDEO_ID&export=download" type="video/mp4">
-        
-        <track src="subtitles/episode1.vtt" kind="subtitles" srclang="en" label="English" default>
-        Your browser does not support the video tag.
+
+<header>
+    <h1>Anime World</h1>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="#">Trending</a>
+        <a href="#">Genres</a>
+    </nav>
+</header>
+
+<section class="anime-header">
+    <h1 id="anime-title">Chainsaw Man - Episode 1</h1>
+</section>
+
+<section class="video-container">
+    <video id="video-player" controls>
+        <source id="video-source" src="https://drive.google.com/uc?id=1sGyEEJcRFx1aMhkLCp7LPDQWZALmpjj-&export=download" type="video/mp4">
+        <track id="subtitle-track" src="subtitles/episode1.srt" kind="subtitles" srclang="en" label="English" default>
     </video>
+</section>
+
+<section class="episode-controls">
+    <script>
+        for (let i = 1; i <= 12; i++) {
+            document.write(`<button onclick="loadEpisode(${i})">${i}</button>`);
+        }
+    </script>
+</section>
+
+<section class="anime-details">
+    <img src="../assets/chainsawman-cover.jpg" alt="Chainsaw Man Cover">
+    <div>
+        <h2>Chainsaw Man</h2>
+        <p>Denji is a poor young man who will do anything for money, even hunting devils with his pet devil Pochita. But his life changes when he merges with Pochita to become the fearsome Chainsaw Man.</p>
+    </div>
+</section>
+
+<script>
+    const videoLinks = {
+        1: '1-00Sg8w71MIXQm6E-vLXoBjtAz58JZBA',
+        2: '15jfXbfBMIVSs0E7MeuS44lhKmhNPIyUP'
+    };
+
+    const subtitleLinks = {
+        1: 'subtitles/episode1.srt',
+        2: 'subtitles/episode2.srt'
+    };
+
+    function loadEpisode(episode) {
+        const videoSource = document.getElementById('video-source');
+        const subtitleTrack = document.getElementById('subtitle-track');
+        const animeTitle = document.getElementById('anime-title');
+        
+        videoSource.src = `https://drive.google.com/uc?id=${videoLinks[episode]}&export=download`;
+        subtitleTrack.src = subtitleLinks[episode];
+        animeTitle.innerText = `Chainsaw Man - Episode ${episode}`;
+        
+        document.querySelectorAll('.episode-controls button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.episode-controls button')[episode - 1].classList.add('active');
+        
+        document.getElementById('video-player').load();
+    }
+</script>
+
 </body>
 </html>
