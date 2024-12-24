@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Episode Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: #fff;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        video {
+            margin-top: 20px;
+            max-width: 80%;
+            height: auto;
+            border: 2px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Anime Episode Test</h1>
+    <video controls>
+        <!-- If using self-hosted video -->
+        <!-- <source src="videos/episode1.mp4" type="video/mp4"> -->
+        
+        <!-- If using Google Drive Direct Link -->
+        <source src="https://drive.google.com/uc?id=YOUR_VIDEO_ID&export=download" type="video/mp4">
+        
+        <track src="subtitles/episode1.vtt" kind="subtitles" srclang="en" label="English" default>
+        Your browser does not support the video tag.
+    </video>
+</body>
+</html>
